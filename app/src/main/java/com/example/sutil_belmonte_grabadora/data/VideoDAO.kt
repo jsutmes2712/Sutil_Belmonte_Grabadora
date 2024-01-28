@@ -10,15 +10,15 @@ import androidx.room.Update
 interface VideoDAO {
 
     @Query("Select * From Video")
-    fun getAll(): LiveData<List<Video>>
+    suspend fun getAll(): List<Video>
 
     @Update
-    fun updateVideo(video: Video)
+    suspend fun updateVideo(video: Video)
 
     @Insert
-    fun insertVideo(video: Video)
+    suspend fun insertVideo(video: Video)
 
     @Delete
-    fun deleteVideo(video: Video)
+    suspend fun deleteVideo(video: Video)
 
 }
