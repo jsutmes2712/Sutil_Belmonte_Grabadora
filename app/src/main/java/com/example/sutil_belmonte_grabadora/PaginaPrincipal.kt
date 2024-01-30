@@ -43,14 +43,8 @@ class PaginaPrincipal : AppCompatActivity() {
                 123
             )
         }
-        deleteDatabase()
-
     }
 
-    private fun deleteDatabase() {
-        val database = VideoDB.getInstance(applicationContext)
-        database.clearAllTables()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
