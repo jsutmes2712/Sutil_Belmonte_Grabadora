@@ -41,9 +41,6 @@ class PaginaGrabar : AppCompatActivity() {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             // Video grabado con éxito
             videoUri = data?.data
-            // Ahora puedes usar videoUri para acceder a la ubicación del video grabado
-            // Por ejemplo, puedes mostrar la URL en un TextView o guardarla en una variable.
-            // Si necesitas la ruta del archivo en el dispositivo, puedes usar videoUri?.path
 
             var path = handleMediaStoreUri(context = applicationContext, uri = videoUri!!)
 

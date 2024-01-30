@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".PaginaGrabar">
 
+
+
     <Button
         android:id="@+id/botongrabar"
         android:layout_width="150dp"
