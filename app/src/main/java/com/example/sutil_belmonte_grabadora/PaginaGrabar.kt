@@ -8,11 +8,16 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
+import androidx.lifecycle.lifecycleScope
+import com.example.sutil_belmonte_grabadora.data.Video
+import com.example.sutil_belmonte_grabadora.data.VideoAPP
+import kotlinx.coroutines.launch
 
 class PaginaGrabar : AppCompatActivity() {
 
     val REQUEST_VIDEO_CAPTURE = 1
     private var videoUri: Uri? = null
+    private val app = VideoAPP
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagina_grabar)
@@ -40,7 +45,12 @@ class PaginaGrabar : AppCompatActivity() {
             // Por ejemplo, puedes mostrar la URL en un TextView o guardarla en una variable.
             // Si necesitas la ruta del archivo en el dispositivo, puedes usar videoUri?.path
 
-            var path = videoUri?.path.toString()
+            var path = handleMediaStoreUri(context = applicationContext, uri = videoUri!!)
+
+
+            lifecycleScope.launch {
+                val list = app.room.VideoDAO().insertVideo(Video(nombre = "pruebame esta", url = path!!))
+            }
 
             println(handleMediaStoreUri(context = applicationContext, uri = videoUri!!))
         }
