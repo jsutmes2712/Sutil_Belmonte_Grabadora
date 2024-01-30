@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sutil_belmonte_grabadora.PaginaPrincipal
 import com.example.sutil_belmonte_grabadora.PaginaReproducir
 import com.example.sutil_belmonte_grabadora.R
+import com.example.sutil_belmonte_grabadora.Reproductor
 import com.example.sutil_belmonte_grabadora.data.Video
 
 class VideoViewHolder(var view: View) : RecyclerView.ViewHolder(view)  {
@@ -23,7 +24,7 @@ class VideoViewHolder(var view: View) : RecyclerView.ViewHolder(view)  {
         url.text = video.url
 
         btnVer.setOnClickListener {
-            var intent = Intent(this.name.context, PaginaPrincipal::class.java)
+            var intent = Intent(this.name.context, Reproductor::class.java)
             intent.putExtra("url", url.text.toString())
             ContextCompat.startActivity(this.name.context, intent, Bundle())
         }

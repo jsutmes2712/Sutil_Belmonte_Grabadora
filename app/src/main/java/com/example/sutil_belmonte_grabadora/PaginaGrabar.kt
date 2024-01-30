@@ -1,5 +1,6 @@
 package com.example.sutil_belmonte_grabadora
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +40,24 @@ class PaginaGrabar : AppCompatActivity() {
             // Por ejemplo, puedes mostrar la URL en un TextView o guardarla en una variable.
             // Si necesitas la ruta del archivo en el dispositivo, puedes usar videoUri?.path
 
-            println(videoUri?.path)
+            var path = videoUri?.path.toString()
+
+            println(handleMediaStoreUri(context = applicationContext, uri = videoUri!!))
         }
     }
+
+    private fun handleMediaStoreUri(context: Context, uri: Uri): String? {
+        // Manejar URI basada en MediaStore
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = context.contentResolver.query(uri, projection, null, null, null)
+
+        cursor?.use {
+            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            it.moveToFirst()
+            return it.getString(columnIndex)
+        }
+
+        return null
+    }
+
 }
