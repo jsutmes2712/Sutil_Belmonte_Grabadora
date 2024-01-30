@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.sutil_belmonte_grabadora.data.VideoDB
 
 class PaginaPrincipal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +43,13 @@ class PaginaPrincipal : AppCompatActivity() {
                 123
             )
         }
+        deleteDatabase()
 
+    }
+
+    private fun deleteDatabase() {
+        val database = VideoDB.getInstance(applicationContext)
+        database.clearAllTables()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

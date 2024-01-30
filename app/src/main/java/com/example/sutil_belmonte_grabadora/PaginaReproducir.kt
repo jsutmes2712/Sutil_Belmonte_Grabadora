@@ -36,6 +36,7 @@ class PaginaReproducir : AppCompatActivity() {
         adapter = VideoAdapter()
         recyclerView.adapter = adapter
         lifecycleScope.launch {
+
             val list = app.room.VideoDAO().getAll()
             adapter?.addItems(list)
         }

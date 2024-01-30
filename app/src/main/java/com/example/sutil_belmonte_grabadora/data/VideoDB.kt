@@ -10,5 +10,23 @@ import androidx.room.RoomDatabase
 )
 abstract class VideoDB:RoomDatabase() {
     abstract fun VideoDAO(): VideoDAO
+
+    companion object {
+        @Volatile
+        private var INSTANCE: VideoDB? = null
+
+        fun getInstance(context: Context): VideoDB {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    VideoDB::class.java,
+                    "tu_database"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+
 }
 
